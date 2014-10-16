@@ -37,7 +37,7 @@ public class GiftController {
 	 *   will be the default if you use @ResponseBody
 	 */
 	@RequestMapping(value=GIFT_PATH, method=RequestMethod.GET)
-	public @ResponseBody Collection<Gift> getVideoList() {
+	public @ResponseBody Collection<Gift> getGiftList() {
 		return Lists.newArrayList(giftRepository.findAll());
 	}
 	
@@ -47,11 +47,18 @@ public class GiftController {
 	 * - Returns the JSON representation of the Gift object that was stored
 	 *   along with with any updates to that object made by the server.
 	 */
-	@RequestMapping(value=GIFT_PATH, method=RequestMethod.POST)
+	/*@RequestMapping(value=GIFT_PATH, method=RequestMethod.POST)
 	public @ResponseBody Gift addGift(@RequestBody Gift gift){
 		gift.setTouchCounter(0);
 		giftRepository.save(gift);
 		return gift;
+	}*/
+	@RequestMapping(value=GIFT_PATH, method=RequestMethod.POST)
+	public @ResponseBody boolean addGift(@RequestBody Gift gift){
+		//gift.setTouchCounter(0);
+		giftRepository.save(gift);
+		System.out.println("Xavier Sucks");
+		return true;
 	}
 
 }
