@@ -1,4 +1,4 @@
-package ch.alex.webservice.repository;
+package ch.alex.webservice.application.repository;
 
 import java.util.Set;
 

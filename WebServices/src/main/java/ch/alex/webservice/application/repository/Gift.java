@@ -1,4 +1,4 @@
-package ch.alex.webservice.repository;
+package ch.alex.webservice.application.repository;
 
 import java.util.Collection;
 
@@ -42,6 +42,10 @@ public class Gift{
 		this.description = description;
 		this.photoFlag = Flag.normal;
 		this.touchCounter = 0;
+	}
+	
+	public void setTouchCounter(long touchers){
+		this.touchCounter = touchers;
 	}
 	
 	public void setFlaf(Flag flag){
