@@ -18,8 +18,9 @@ public class GiftChain {
 	private String title;
 	private String description;
 	
-	@ManyToOne(optional = false)
-	private Set<Gift> giftOfTheChain;
+	@ManyToOne
+	//private Set<Gift> giftOfTheChain;
+	private Gift giftOfTheChain;
 	
 	private GiftChain(){
 	}

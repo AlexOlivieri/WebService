@@ -17,7 +17,7 @@ public class Gift{
 	
 	private String title;
 	private String description;
-	private byte[] image;
+	//private byte[] image;
 	
 	private enum Flag{
 		normal,
@@ -35,9 +35,9 @@ public class Gift{
 	private Gift(){
 	}
 
-	public Gift(byte[] image, String title, String description) {
+	public Gift(/*byte[] image,*/ String title, String description) {
 		
-		this.image = image;
+		//this.image = image;
 		this.title = title;
 		this.description = description;
 		this.photoFlag = Flag.normal;

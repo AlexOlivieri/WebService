@@ -1,11 +1,15 @@
 package ch.alex.webservice.application.controllers;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.common.collect.Lists;
 
 import ch.alex.webservice.application.repository.Gift;
 import ch.alex.webservice.application.repository.GiftRepository;
@@ -21,6 +25,20 @@ public class GiftController {
 	@RequestMapping(value="/go", method=RequestMethod.GET)
 	public @ResponseBody String goodLuck(){
 		return "Good Luck";
+	}
+	
+	/* GET /gift
+	 * - Returns the list of Gift that have been added to the
+	 *   server as JSON. The list of videos should be persisted
+	 *   using Spring Data. 
+	 * - The list of Gift objects should be able 
+	 *   to be unmarshalled by the client into a Collection<Gift>.
+	 * - The return content-type should be application/json, which
+	 *   will be the default if you use @ResponseBody
+	 */
+	@RequestMapping(value=GIFT_PATH, method=RequestMethod.GET)
+	public @ResponseBody Collection<Gift> getVideoList() {
+		return Lists.newArrayList(giftRepository.findAll());
 	}
 	
 	/*
