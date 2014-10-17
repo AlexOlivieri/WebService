@@ -55,6 +55,9 @@ public class GiftController {
 	}*/
 	@RequestMapping(value=GIFT_PATH, method=RequestMethod.POST)
 	public @ResponseBody boolean addGift(@RequestBody Gift gift){
+		
+		System.err.println("Within AddGift");
+		
 		//gift.setTouchCounter(0);
 		giftRepository.save(gift);
 		System.out.println("Xavier Sucks");

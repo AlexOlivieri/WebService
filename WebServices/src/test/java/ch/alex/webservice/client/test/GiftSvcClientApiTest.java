@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.util.Collection;
 
 import retrofit.RestAdapter;
-import retrofit.RestAdapter.LogLevel;
 import ch.alex.webservice.application.repository.Gift;
 import ch.alex.webservice.client.GiftSvcApi;
 
@@ -17,7 +16,7 @@ public class GiftSvcClientApiTest {
 	
 	private GiftSvcApi giftService = new RestAdapter.Builder()
 		.setEndpoint(TEST_URL)
-		.setLogLevel(LogLevel.FULL)
+		.setLogLevel(RestAdapter.LogLevel.FULL)
 		.build()
 		.create(GiftSvcApi.class);
 	
