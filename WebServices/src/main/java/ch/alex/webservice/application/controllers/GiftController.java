@@ -1,6 +1,8 @@
 package ch.alex.webservice.application.controllers;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,7 @@ public class GiftController {
 	
 	@Autowired
 	private GiftRepository giftRepository;
+//	private List<Gift> giftRepository = new CopyOnWriteArrayList<Gift>();
 	
 	@RequestMapping(value="/go", method=RequestMethod.GET)
 	public @ResponseBody String goodLuck(){
@@ -40,6 +43,7 @@ public class GiftController {
 	@RequestMapping(value=GIFT_PATH, method=RequestMethod.GET)
 	public @ResponseBody Collection<Gift> getGiftList() {
 		return Lists.newArrayList(giftRepository.findAll());
+		//return giftRepository;
 	}
 	
 	/*
@@ -57,12 +61,13 @@ public class GiftController {
 	}
 */
 	@RequestMapping(value=GIFT_PATH, method=RequestMethod.POST)
-	public @ResponseBody boolean addGift(@RequestBody Gift gift){
+	public @ResponseBody boolean addGift(@RequestBody Gift g){
 		
 		System.err.println("Gift Controller: Within AddGift");
 		
 		//gift.setTouchCounter(0);
-		Gift newGift = giftRepository.save(gift);
+		Gift newGift = giftRepository.save(g);
+		//boolean answer = giftRepository.add(g);
 		
 		System.err.println("Gift Controller: Gift Saved");
 		

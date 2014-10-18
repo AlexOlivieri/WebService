@@ -2,17 +2,15 @@ package ch.alex.webservice.client.test;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
-
 import java.util.Collection;
+
+import org.junit.Test;
 
 import retrofit.ErrorHandler;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
-import retrofit.client.ApacheClient;
-import retrofit.converter.Converter;
+import ch.alex.webservice.application.client.GiftSvcApi;
 import ch.alex.webservice.application.repository.Gift;
-import ch.alex.webservice.client.application.GiftSvcApi;
 
 public class GiftSvcClientApiTest {
 
@@ -42,8 +40,8 @@ public class GiftSvcClientApiTest {
 	@Test
 	public void testGiftAddAndGetList(){
 		
-		String title = "First Gift";
-		String description = "Gift Title 1";
+		String title = "title";
+		String description = "description";
 		
 		Gift gift = new Gift(title, description);
 		

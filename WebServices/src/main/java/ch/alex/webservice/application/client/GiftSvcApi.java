@@ -1,6 +1,7 @@
-package ch.alex.webservice.client.application;
+package ch.alex.webservice.application.client;
 
 import java.util.Collection;
+import java.util.List;
 
 import retrofit.http.Body;
 import retrofit.http.FormUrlEncoded;
