@@ -18,6 +18,7 @@ import ch.alex.webservice.application.repository.GiftRepository;
 public class GiftController {
 	
 	private final String GIFT_PATH = "/gift";
+	private final String GIFT_TITLE = "/giftTitle";
 	
 	@Autowired
 	private GiftRepository giftRepository;
@@ -47,20 +48,35 @@ public class GiftController {
 	 * - Returns the JSON representation of the Gift object that was stored
 	 *   along with with any updates to that object made by the server.
 	 */
-	/*@RequestMapping(value=GIFT_PATH, method=RequestMethod.POST)
+/*	@RequestMapping(value=GIFT_PATH, method=RequestMethod.POST)
 	public @ResponseBody Gift addGift(@RequestBody Gift gift){
-		gift.setTouchCounter(0);
-		giftRepository.save(gift);
-		return gift;
-	}*/
+		//gift.setTouchCounter(0);
+		Gift newGift = giftRepository.save(gift);
+		System.err.println("Gift Saved");
+		return newGift;
+	}
+*/
 	@RequestMapping(value=GIFT_PATH, method=RequestMethod.POST)
 	public @ResponseBody boolean addGift(@RequestBody Gift gift){
 		
-		System.err.println("Within AddGift");
+		System.err.println("Gift Controller: Within AddGift");
 		
 		//gift.setTouchCounter(0);
-		giftRepository.save(gift);
-		System.out.println("Xavier Sucks");
+		Gift newGift = giftRepository.save(gift);
+		
+		System.err.println("Gift Controller: Gift Saved");
+		
+		return true;
+	}
+	
+	/*
+	 * Ok - Tested and Works
+	 */
+	@RequestMapping(value=GIFT_TITLE, method=RequestMethod.POST)
+	public @ResponseBody boolean testMethod(@RequestBody String title){
+		
+		System.err.println("Gift Controller: Within testMethod");
+		
 		return true;
 	}
 
