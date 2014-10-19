@@ -15,7 +15,8 @@ import ch.alex.webservice.application.repository.GiftRepository;
 @EnableAutoConfiguration
 //Tell Spring to automatically create a JPA implementation of our
 //GiftRepository
-@EnableJpaRepositories(basePackageClasses = GiftRepository.class)
+//@EnableJpaRepositories(basePackageClasses = GiftRepository.class)
+@EnableJpaRepositories
 //Tell Spring to turn on WebMVC (e.g., it should enable the DispatcherServlet
 //so that requests can be routed to our Controllers)
 @EnableWebMvc

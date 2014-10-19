@@ -1,5 +1,9 @@
 package ch.alex.webservice.application.repository;
 
+import java.util.Collection;
+import java.util.HashSet;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,19 +22,19 @@ public class Gift{
 	private String description;
 	//private byte[] image;
 	
-/*	private enum Flag{
+	private enum Flag{
 		normal,
 		obscene,
 		inappropriate
 	};
-*/
+
 	
-//	private Flag photoFlag;
+	private Flag photoFlag;
 	
-//	private long touchCounter;
+	private long touchCounter;
 	
-//	@ElementCollection
-//	private Collection<String> usersWhoTouchedTheGift;
+	@ElementCollection
+	private Collection<String> usersWhoTouchedTheGift;
 	
 	public Gift(){}
 	
@@ -39,11 +43,19 @@ public class Gift{
 		super();
 		this.title = title;
 		this.description = description;
-//		this.usersWhoTouchedTheGift = new HashSet<String>();
-//		this.photoFlag = Flag.normal;
-//		this.touchCounter = 0;
+		//this.usersWhoTouchedTheGift = new HashSet<String>();
+		this.photoFlag = Flag.normal;
+		this.touchCounter = 0;
 		
 //		System.err.println("Gift: Gift Created");
+	}
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id){
+		this.id = id;
 	}
 	
 	public String getTitle() {
@@ -62,21 +74,28 @@ public class Gift{
 		this.description = description;
 	}
 	
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id){
-		this.id = id;
+	public Collection<String> getToucher(){
+		return usersWhoTouchedTheGift;
 	}
 	
-/*	public void setTouchCounter(long touchers){
+	public void setToucher(Collection<String> usersWhoTouchedTheGift){
+		this.usersWhoTouchedTheGift = usersWhoTouchedTheGift;
+	}
+	
+	public long getTouchCounter(){
+		return touchCounter;
+	}
+	
+	public void setTouchCounter(long touchers){
 		this.touchCounter = touchers;
 	}
-*/	
 	
 	
-/*	public void setFlaf(Flag flag){
+	public Flag getPhotoFlag(){
+		return photoFlag;
+	}
+	
+	public void setPhotoFlaf(Flag flag){
 		
 		if(flag == Flag.obscene){
 			this.photoFlag = Flag.obscene;
@@ -84,7 +103,7 @@ public class Gift{
 			this.photoFlag = Flag.inappropriate;
 		}
 	}
-*/
+
 	
 	/**
 	 * Two Gifts will generate the same hashcode if they have exactly the same
