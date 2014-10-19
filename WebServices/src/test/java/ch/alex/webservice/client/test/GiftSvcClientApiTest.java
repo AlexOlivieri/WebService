@@ -6,27 +6,11 @@ import java.util.Collection;
 
 import org.junit.Test;
 
-import retrofit.ErrorHandler;
 import retrofit.RestAdapter;
-import retrofit.RetrofitError;
 import ch.alex.webservice.application.client.GiftSvcApi;
 import ch.alex.webservice.application.repository.Gift;
 
 public class GiftSvcClientApiTest {
-
-	private class ErrorRecorder implements ErrorHandler {
-
-		private RetrofitError error;
-
-		public Throwable handleError(RetrofitError cause) {
-			error = cause;
-			return error.getCause();
-		}
-
-		public RetrofitError getError() {
-			return error;
-		}
-	}
 	
 	private final String TEST_URL = "http://localhost:8080";
 	
@@ -40,8 +24,8 @@ public class GiftSvcClientApiTest {
 	@Test
 	public void testGiftAddAndGetList(){
 		
-		String title = "title";
-		String description = "description";
+		String title = "Title";
+		String description = "Description";
 		
 		Gift gift = new Gift(title, description);
 		

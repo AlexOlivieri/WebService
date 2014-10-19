@@ -1,8 +1,6 @@
 package ch.alex.webservice.application.controllers;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +15,7 @@ import ch.alex.webservice.application.repository.Gift;
 import ch.alex.webservice.application.repository.GiftRepository;
 
 @Controller
-public class GiftController {
+public class GiftController{
 	
 	private final String GIFT_PATH = "/gift";
 	private final String GIFT_TITLE = "/giftTitle";

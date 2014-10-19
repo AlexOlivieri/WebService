@@ -62,6 +62,14 @@ public class Gift{
 		this.description = description;
 	}
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id){
+		this.id = id;
+	}
+	
 /*	public void setTouchCounter(long touchers){
 		this.touchCounter = touchers;
 	}
