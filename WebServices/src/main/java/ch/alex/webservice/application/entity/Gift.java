@@ -1,13 +1,15 @@
-package ch.alex.webservice.application.repository;
+package ch.alex.webservice.application.entity;
 
 import java.util.Collection;
-import java.util.HashSet;
 
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.google.common.base.Objects;
 
@@ -15,10 +17,14 @@ import com.google.common.base.Objects;
 public class Gift{
 
 	@Id
+	@Column(name = "GIFT_ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@Column(name = "TITLE", nullable = false)
 	private String title;
+	
+	@Column(name = "DESCRIPTION", nullable = true)
 	private String description;
 	//private byte[] image;
 	
@@ -28,13 +34,22 @@ public class Gift{
 		inappropriate
 	};
 
-	
+	@Column(name = "FLAG", nullable = false)
 	private Flag photoFlag;
 	
+	@Column(name = "TOUCH_COUNTER", nullable = false)
 	private long touchCounter;
 	
 	@ElementCollection
 	private Collection<String> usersWhoTouchedTheGift;
+	
+	@ManyToOne(optional=true)
+	@JoinColumn(name="USER_ID",referencedColumnName="USER_ID")
+	private User user;
+	
+	@ManyToOne(optional=false)
+	@JoinColumn(name="CHAIN_ID",referencedColumnName="CHAIN_ID")
+	private GiftChain giftChain;
 	
 	public Gift(){}
 	
@@ -102,6 +117,22 @@ public class Gift{
 		}else if(flag == Flag.inappropriate){
 			this.photoFlag = Flag.inappropriate;
 		}
+	}
+	
+	public User getCustomer() {
+		return user;
+	}
+
+	public void setCustomer(User user) {
+		this.user = user;
+	}
+	
+	public GiftChain getGiftChain() {
+		return giftChain;
+	}
+
+	public void setCustomer(GiftChain giftChain) {
+		this.giftChain = giftChain;
 	}
 
 	

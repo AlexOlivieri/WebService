@@ -1,27 +1,31 @@
-package ch.alex.webservice.application.repository;
+package ch.alex.webservice.application.entity;
 
 import java.util.Collection;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
 public class User {
 
 	@Id
+	@Column(name = "USER_ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
+	@Column(name = "USERNAME", nullable = false)
 	private String username;
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
+/*	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
 	@JoinColumn(name="owner_id")
+	private Collection<Gift> gifts;
+*/	
+	@OneToMany(mappedBy="user",targetEntity=Gift.class,fetch=FetchType.EAGER)
 	private Collection<Gift> gifts;
 	
 	private User(){}

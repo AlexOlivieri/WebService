@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import retrofit.RestAdapter;
 import ch.alex.webservice.application.client.GiftSvcApi;
-import ch.alex.webservice.application.repository.Gift;
+import ch.alex.webservice.application.entity.Gift;
 
 public class GiftWithUserSvcClientApiTest {
 	

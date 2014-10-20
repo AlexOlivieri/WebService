@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.common.collect.Lists;
 
-import ch.alex.webservice.application.repository.Gift;
+import ch.alex.webservice.application.entity.Gift;
 import ch.alex.webservice.application.repository.GiftRepository;
 
 @Controller

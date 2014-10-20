@@ -5,7 +5,7 @@ import java.util.Collection;
 import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
-import ch.alex.webservice.application.repository.Gift;
+import ch.alex.webservice.application.entity.Gift;
 
 public interface GiftSvcApi {
 	

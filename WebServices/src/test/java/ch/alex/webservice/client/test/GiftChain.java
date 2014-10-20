@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import ch.alex.webservice.application.repository.Gift;
+import ch.alex.webservice.application.entity.Gift;
 
 @Entity
 public class GiftChain {

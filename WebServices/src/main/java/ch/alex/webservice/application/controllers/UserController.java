@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ch.alex.webservice.application.repository.User;
+import ch.alex.webservice.application.entity.User;
 import ch.alex.webservice.application.repository.UserRepository;
 
 import com.google.common.collect.Lists;
