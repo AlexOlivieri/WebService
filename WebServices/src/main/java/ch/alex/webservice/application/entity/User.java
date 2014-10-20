@@ -2,6 +2,7 @@ package ch.alex.webservice.application.entity;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,17 +15,20 @@ import javax.persistence.OneToMany;
 public class User {
 
 	@Id
-	@Column(name = "USER_ID", nullable = false)
+	@Column(name = "USER_ID", nullable = true)
+	//@Column(name = "USER_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@Column(name = "USERNAME", nullable = false)
+	@Column(name = "USERNAME", nullable = true)
 	private String username;
 	
 /*	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true)
 	@JoinColumn(name="owner_id")
 	private Collection<Gift> gifts;
 */	
+	
+	@Column(name = "GIFT", nullable = true)
 	@OneToMany(mappedBy="user",targetEntity=Gift.class,fetch=FetchType.EAGER)
 	private Collection<Gift> gifts;
 	
@@ -50,7 +54,7 @@ public class User {
 		this.username = username;
 	}
 	
-	public Collection<Gift> getGiftsBelongingToTheUser(){
+	public Collection<Gift> getGifts(){
 		return gifts;
 	}
 	

@@ -4,10 +4,12 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ch.alex.webservice.application.entity.Gift;
 import ch.alex.webservice.application.entity.User;
 import ch.alex.webservice.application.repository.UserRepository;
 
@@ -47,14 +49,14 @@ public class UserController{
 	 * - Returns the JSON representation of the Gift object that was stored
 	 *   along with with any updates to that object made by the server.
 	 */
-/*	@RequestMapping(value=GIFT_PATH, method=RequestMethod.POST)
-	public @ResponseBody Gift addGift(@RequestBody Gift gift){
+	@RequestMapping(value=USER_PATH, method=RequestMethod.POST)
+	public @ResponseBody boolean addGift(@RequestBody User user){
 		//gift.setTouchCounter(0);
-		Gift newGift = giftRepository.save(gift);
-		System.err.println("Gift Saved");
-		return newGift;
+		User newUser = userRepository.save(user);
+		System.err.println("User Saved");
+		return true;
 	}
-*/
+
 
 /*	@RequestMapping(value=GIFT_PATH, method=RequestMethod.POST)
 	public @ResponseBody boolean addGift(@RequestBody Gift g){
