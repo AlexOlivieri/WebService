@@ -11,6 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.base.Objects;
+
 @Entity
 public class User {
 
@@ -29,8 +32,14 @@ public class User {
 */	
 	
 	@Column(name = "GIFT", nullable = true)
-	@OneToMany(mappedBy="user",targetEntity=Gift.class,fetch=FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, mappedBy="user",targetEntity=Gift.class,fetch=FetchType.EAGER)
+//	@JsonIgnore
 	private Collection<Gift> gifts;
+	
+	@Column(name = "GIFT_CHAIN", nullable = true)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval=true, mappedBy="user",targetEntity=GiftChain.class,fetch=FetchType.EAGER)
+//	@JsonIgnore
+	private Collection<GiftChain> giftChains;
 	
 	private User(){}
 	
@@ -54,12 +63,52 @@ public class User {
 		this.username = username;
 	}
 	
+	@JsonIgnore
 	public Collection<Gift> getGifts(){
 		return gifts;
 	}
 	
+	
 	public void setGifts(Collection<Gift> gifts){
 		this.gifts = gifts;
+	}
+	
+	@JsonIgnore
+	public Collection<GiftChain> getGiftChains(){
+		return giftChains;
+	}
+	
+	
+	public void setGiftChain(Collection<GiftChain> giftChains){
+		this.giftChains = giftChains;
+	}
+	
+	/**
+	 * Two Videos will generate the same hashcode if they have exactly the same
+	 * values for their name, url, and duration.
+	 * 
+	 */
+	@Override
+	public int hashCode() {
+		// Google Guava provides great utilities for hashing
+		return Objects.hashCode(username, id);
+	}
+
+	/**
+	 * Two Videos are considered equal if they have exactly the same values for
+	 * their name, url, and duration.
+	 * 
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof User) {
+			User other = (User) obj;
+			// Google Guava provides great utilities for equals too!
+			return Objects.equal(username, other.username)
+					&& id == other.id;
+		} else {
+			return false;
+		}
 	}
 
 }

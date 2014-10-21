@@ -16,7 +16,7 @@ public interface GiftSvcApi {
 	public Collection<Gift> getGiftList();
 	
 	@POST(GIFT_PATH)
-	public boolean addGift(@Body Gift gift);
+	public Gift addGift(@Body Gift gift);
 	
 	@POST(GIFT_TITLE)
 	public boolean testMethod(@Body String title);

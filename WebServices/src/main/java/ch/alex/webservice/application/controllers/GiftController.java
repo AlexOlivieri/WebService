@@ -50,26 +50,19 @@ public class GiftController{
 	 * - Returns the JSON representation of the Gift object that was stored
 	 *   along with with any updates to that object made by the server.
 	 */
-/*	@RequestMapping(value=GIFT_PATH, method=RequestMethod.POST)
-	public @ResponseBody Gift addGift(@RequestBody Gift gift){
-		//gift.setTouchCounter(0);
-		Gift newGift = giftRepository.save(gift);
-		System.err.println("Gift Saved");
-		return newGift;
-	}
-*/
 	@RequestMapping(value=GIFT_PATH, method=RequestMethod.POST)
-	public @ResponseBody boolean addGift(@RequestBody Gift g){
+	//public @ResponseBody boolean addGift(@RequestBody Gift g){
+	public @ResponseBody Gift addGift(@RequestBody Gift g){
 		
 		System.err.println("Gift Controller: Within AddGift");
-		
+
 		//gift.setTouchCounter(0);
 		Gift newGift = giftRepository.save(g);
 		//boolean answer = giftRepository.add(g);
 		
 		System.err.println("Gift Controller: Gift Saved");
 		
-		return true;
+		return newGift;
 	}
 	
 	/*

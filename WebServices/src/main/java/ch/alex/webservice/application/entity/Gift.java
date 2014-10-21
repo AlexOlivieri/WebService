@@ -12,9 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.springframework.test.context.transaction.TransactionConfiguration;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.google.common.base.Objects;
 
 @Entity
@@ -29,6 +26,9 @@ public class Gift{
 	
 	@Column(name = "TITLE", nullable = true)
 	private String title;
+	
+	@Column(name = "IMAGE", nullable = true)
+	private String image;
 	
 	@Column(name = "DESCRIPTION", nullable = true)
 	private String description;
@@ -47,11 +47,17 @@ public class Gift{
 	private long touchCounter;
 	
 	@ElementCollection
-	private Collection<String> usersWhoTouchedTheGift;
+	private Collection<User> usersWhoTouchedTheGift;
 	
-	@ManyToOne(optional=false, cascade = CascadeType.MERGE)
-	@JoinColumn(name="USER_ID",referencedColumnName="USER_ID")
+	@ManyToOne(cascade=CascadeType.MERGE)
+	@JoinColumn(name="USER_ID", referencedColumnName="USER_ID")
+//	@JsonIgnore
 	private User user;
+	
+	@ManyToOne(cascade=CascadeType.MERGE)
+	@JoinColumn(name="CHAIN_ID", referencedColumnName="CHAIN_ID")
+//	@JsonIgnore
+	private GiftChain giftChain;
 	
 	public Gift(){}
 	
@@ -87,18 +93,27 @@ public class Gift{
 	}
 
 	public String getDescription() {
-		return description;
+		return this.description;
 	}
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 	
-	public Collection<String> getToucher(){
+	public String getImage(){
+		return this.image;
+	}
+	
+	public void setImage(String image){
+		this.image = image;
+	}
+	
+	public Collection<User> getUsersWhoTouchedTheGift(){
 		return usersWhoTouchedTheGift;
 	}
 	
-	public void setToucher(Collection<String> usersWhoTouchedTheGift){
+	//public void setUsersWhoTouchedTheGift(Collection<String> usersWhoTouchedTheGift){
+	public void setUsersWhoTouchedTheGift(Collection<User> usersWhoTouchedTheGift){
 		this.usersWhoTouchedTheGift = usersWhoTouchedTheGift;
 	}
 	
@@ -130,25 +145,34 @@ public class Gift{
 	}
 
 	public void setUser(User user) {
-		System.err.println("Within serUser " + this.user);
+		System.err.println("Within setUser " + user);
 		this.user = user;
 	}
+	
+	public GiftChain getGiftChain() {
+		System.err.println("Within getUser " + user);
+		return giftChain;
+	}
 
+	public void setGiftChain(GiftChain giftChain) {
+		System.err.println("Within setUser " + user);
+		this.giftChain = giftChain;
+	}
 	
 	/**
-	 * Two Gifts will generate the same hashcode if they have exactly the same
-	 * values for their title, description, and duration.
+	 * Two Videos will generate the same hashcode if they have exactly the same
+	 * values for their name, url, and duration.
 	 * 
 	 */
 	@Override
 	public int hashCode() {
 		// Google Guava provides great utilities for hashing
-		return Objects.hashCode(title, description);
+		return Objects.hashCode(title, description, id);
 	}
 
 	/**
-	 * Two Gifts are considered equal if they have exactly the same values for
-	 * their title, description, and duration.
+	 * Two Videos are considered equal if they have exactly the same values for
+	 * their name, url, and duration.
 	 * 
 	 */
 	@Override
@@ -157,7 +181,8 @@ public class Gift{
 			Gift other = (Gift) obj;
 			// Google Guava provides great utilities for equals too!
 			return Objects.equal(title, other.title)
-					&& Objects.equal(description, other.description);
+					&& Objects.equal(description, other.description)
+					&& id == other.id;
 		} else {
 			return false;
 		}

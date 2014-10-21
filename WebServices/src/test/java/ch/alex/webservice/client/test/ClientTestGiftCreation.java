@@ -4,18 +4,13 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import org.junit.Test;
 
 import retrofit.RestAdapter;
 import ch.alex.webservice.application.client.GiftSvcApi;
 import ch.alex.webservice.application.entity.Gift;
-import ch.alex.webservice.application.entity.User;
 
-public class GiftSvcClientApiTest {
+public class ClientTestGiftCreation {
 	
 	private final String TEST_URL = "http://localhost:8080";
 	
@@ -31,23 +26,11 @@ public class GiftSvcClientApiTest {
 		
 		String title = "Title";
 		String description = "Description";
+		String image = "myImage";
 		
-		EntityManagerFactory entityManagerFactory =  Persistence.createEntityManagerFactory("testjpa");
-		EntityManager em = entityManagerFactory.createEntityManager();
-		
-		User user = new User("User1");
-		em.persist(user);
-		
-		//GiftChain chain = new GiftChain("Chain1","Test");
-		
-		Gift gift = new Gift(title, description);
-		gift.setUser(user);
-		//gift.setGiftChain(chain);
-		
-		
-		boolean response = giftService.addGift(gift);
-		
-		assertTrue(response);
+		Gift clientGift = new Gift(title, description);
+		clientGift.setImage(image);
+		Gift gift = giftService.addGift(clientGift);
 		
 		Collection<Gift> listOfGift = giftService.getGiftList();
 		

@@ -5,11 +5,11 @@ import java.util.Collection;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import ch.alex.webservice.application.entity.Gift;
 import ch.alex.webservice.application.entity.GiftChain;
+import ch.alex.webservice.application.entity.User;
 
 @Repository
-public interface GiftRepository extends CrudRepository<Gift, Long>{
+public interface ChainRepository extends CrudRepository<GiftChain, Long>{
 
-	public Collection<Gift> findByTitle(String title);
+	public Collection<GiftChain> findByTitle(String title);
 }

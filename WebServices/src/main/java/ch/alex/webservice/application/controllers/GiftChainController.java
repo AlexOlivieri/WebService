@@ -9,21 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ch.alex.webservice.application.entity.Gift;
-import ch.alex.webservice.application.entity.User;
-import ch.alex.webservice.application.repository.UserRepository;
+import ch.alex.webservice.application.entity.GiftChain;
+import ch.alex.webservice.application.repository.ChainRepository;
 
 import com.google.common.collect.Lists;
 
 @Controller
-public class UserController{
+public class GiftChainController{
 	
-	private final String USER_PATH = "/user";
+	private final String CHAIN_PATH = "/chain";
 	
 	@Autowired
-	private UserRepository userRepository;
+	private ChainRepository chainRepository;
 	
-	@RequestMapping(value="/goUser", method=RequestMethod.GET)
+	@RequestMapping(value="/goChain", method=RequestMethod.GET)
 	public @ResponseBody String goodLuck(){
 		return "Good Luck";
 	}
@@ -37,9 +36,9 @@ public class UserController{
 	 * - The return content-type should be application/json, which
 	 *   will be the default if you use @ResponseBody
 	 */
-	@RequestMapping(value=USER_PATH, method=RequestMethod.GET)
-	public @ResponseBody Collection<User> getListOfUsers() {
-		return Lists.newArrayList(userRepository.findAll());
+	@RequestMapping(value=CHAIN_PATH, method=RequestMethod.GET)
+	public @ResponseBody Collection<GiftChain> getGiftChain() {
+		return Lists.newArrayList(chainRepository.findAll());
 		//return giftRepository;
 	}
 	
@@ -49,11 +48,11 @@ public class UserController{
 	 * - Returns the JSON representation of the Gift object that was stored
 	 *   along with with any updates to that object made by the server.
 	 */
-	@RequestMapping(value=USER_PATH, method=RequestMethod.POST)
-	public @ResponseBody User addUser(@RequestBody User user){
+	@RequestMapping(value=CHAIN_PATH, method=RequestMethod.POST)
+	public @ResponseBody GiftChain addUser(@RequestBody GiftChain chain){
 		//gift.setTouchCounter(0);
-		User newUser = userRepository.save(user);
+		GiftChain newChain = chainRepository.save(chain);
 		System.err.println("User Saved");
-		return newUser;
+		return newChain;
 	}
 }
